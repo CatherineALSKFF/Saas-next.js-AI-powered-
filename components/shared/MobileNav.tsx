@@ -20,6 +20,7 @@ const MobileNav = () => {
           width={180}
           height={28}
         />
+
       </Link>
 
       <nav className="flex gap-2">

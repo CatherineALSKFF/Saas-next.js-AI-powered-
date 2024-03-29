@@ -1,6 +1,10 @@
+
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 @layer base {
   :root {
@@ -35,6 +39,15 @@
     --radius: 0.5rem;
   }
 
+
+  .logo-gradient-text{
+    background: linear-gradient(125deg, rgb(61, 90, 254) 0%, rgb(0, 209, 255) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline;
+    font-weight: bold; 
+  }
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
