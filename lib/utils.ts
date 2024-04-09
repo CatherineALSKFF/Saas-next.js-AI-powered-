@@ -10,26 +10,55 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// ERROR HANDLER
-export const handleError = (error: unknown) => {
+
+
+
+
+
+// // ERROR HANDLER
+// export const handleError = (error: unknown) => {
+//   if (error instanceof Error) {
+//     // This is a native JavaScript error (e.g., TypeError, RangeError)
+//     console.error(error.message);
+//     throw new Error(`Error: ${error.message}`);
+//   } else if (typeof error === "string") {
+//     // This is a string error message
+//     console.error(error);
+//     throw new Error(`Error: ${error}`);
+//   } else {
+//     // This is an unknown type of error
+//     console.error(error);
+//     throw new Error(`Unknown error: ${JSON.stringify(error)}`);
+//   }
+// };
+
+
+
+
+// ERROR HANDLER V2
+export const handleError = (error: unknown): { error: true, message: string } => {
+  let errorMessage = "Unknown error";
   if (error instanceof Error) {
-    // This is a native JavaScript error (e.g., TypeError, RangeError)
     console.error(error.message);
-    throw new Error(`Error: ${error.message}`);
+    errorMessage = error.message;
   } else if (typeof error === "string") {
-    // This is a string error message
     console.error(error);
-    throw new Error(`Error: ${error}`);
+    errorMessage = error;
   } else {
-    // This is an unknown type of error
     console.error(error);
-    throw new Error(`Unknown error: ${JSON.stringify(error)}`);
+    errorMessage = JSON.stringify(error);
   }
+  return { error: true, message: `Error: ${errorMessage}` };
 };
+
+
+
+
+
 
 // PLACEHOLDER LOADER - while image is transforming
 const shimmer = (w: number, h: number) => `
-<svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg width="${w}" height="${h}" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink">
   <defs>
     <linearGradient id="g">
       <stop stop-color="#7986AC" offset="20%" />
