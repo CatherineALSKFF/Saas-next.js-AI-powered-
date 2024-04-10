@@ -1,5 +1,27 @@
 import { Schema, model, models } from "mongoose";
 
+
+// ADDED INTERFACE
+
+
+export interface IUser extends Document {
+  clerkId: string;
+  email: string;
+  username: string;
+  photo: string;
+  firstName?: string; // Assuming these fields are optional
+  lastName?: string;  // Assuming these fields are optional
+  planId?: number;
+  creditBalance?: number;
+}
+// ADDED INTERFACE
+
+
+
+
+
+
+
 const UserSchema = new Schema({
   clerkId: {
     type: String,
@@ -36,6 +58,11 @@ const UserSchema = new Schema({
   },
 });
 
-const User = models?.User || model("User", UserSchema);
+
+
+
+const User = models?.User || model<IUser>("User", UserSchema);
+
+// const User = models?.User || model("User", UserSchema);
 
 export default User;
